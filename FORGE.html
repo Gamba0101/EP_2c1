@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no" />
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css" type="text/css">
+  <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
+<!--  <script src="three.js"></script>-->
+
+ <!-- <script src="reqvest.js"></script>-->
+  <style>
+      body {
+          margin: 0;
+      }
+      #forgeViewer {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          background-color: #F0F8FF;
+      }
+  </style>
+</head>
+<body>
+
+  <div id="forgeViewer">
+
+ <script>
+//************************************************************************************************************************************************************************************
+  var viewer;
+
+  function GetToken()
+  {
+    var data = "client_id=KrkBGjSO4SSnA9w0ipFDlZ8j74eiGHQC&client_secret=50KLzLNBPqj9uAVz&grant_type=client_credentials&scope=data%3Awrite%20data%3Aread%20bucket%3Aread%20bucket%3Acreate";
+
+    var xhr = new XMLHttpRequest();
+//  xhr.withCredentials = true;
+
+    let timer = 0;
+    var result = '0';
+    var token;
+
+    xhr.open("POST", "https://developer.api.autodesk.com/authentication/v1/authenticate", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(data);
+    result = xhr.responseText;
+    var jr = JSON.parse(result);
+    token = jr["access_token"];
+    return token;
+  }
+
+  const options = {
+		env: 'AutodeskProduction2',
+//    api: 'StreamingV2',
+//   accessToken: "eyJhbGciOiJSUzI1NiIsImtpZCI6IlU3c0dGRldUTzlBekNhSzBqZURRM2dQZXBURVdWN2VhIn0.eyJzY29wZSI6WyJkYXRhOndyaXRlIiwiZGF0YTpyZWFkIiwiYnVja2V0OnJlYWQiLCJidWNrZXQ6Y3JlYXRlIl0sImNsaWVudF9pZCI6Iktya0JHalNPNFNTbkE5dzBpcEZEbFo4ajc0ZWlHSFFDIiwiYXVkIjoiaHR0cHM6Ly9hdXRvZGVzay5jb20vYXVkL2Fqd3RleHA2MCIsImp0aSI6InR1V1ZPcWRJUTBjSjQ3N2ZJOXVjT0kxS2xuVmVKWFl5RzRUY0dYaWthRzdoTE95NWJqenp3djJYMzZIVml1SXYiLCJleHAiOjE2Mzk2NDc5Nzl9.SVveEgflB7SF7tvILUhruKno6zjW9ukRB-PNVfBDH8OwT9tPK1J68TVbZy_2dpT0hbXpY6D2i9Td-oYW9acwCOMPyWkRlKgSa8dB0wIEX4Jb2lHAaFVcqnBBCGdFIu7RYSGYuwgxHDniR_snCZGPvMaVFUhkpY0RXMuWjNmQzVdLX88N7MPJbCK1izxY8rmlZU53D3VJotHSjIjkCs5AtMMni1Uta6swkr9zJi4CrUgs2aWwDZLIpONgiDYB_xFozVzCdKy5RNiapxllqbjKhdQnf7QgUE8KaJUEHOyb8Ml1lnx0sbOjM_88QoHITISkSVeU0A7oR-HsmtBzi6r5mQ"
+    accessToken: GetToken()
+};
+
+  const documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDIxLTEwLTI1LTE1LTIzLTI5LWQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0MjdlL1hMMzIwSGFuZC5vYmo=';
+  Autodesk.Viewing.Initializer(options, () => {
+    viewer = new Autodesk.Viewing.GuiViewer3D(document.getElementById('forgeViewer'));
+    viewer.start();
+		Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess);
+  });
+ 
+  function onDocumentLoadSuccess(viewerDocument) {
+    var viewables =  viewerDocument.getRoot().search({ 'type': 'geometry' });
+    viewer.loadDocumentNode(viewerDocument, viewables[0]);
+//    viewer.selectItem()
+//    viewer.selectItem(viewables[0].data, onItemLoadSuccess, onItemLoadFail);
+ //   setupModel();
+  }
+
+  function setupModel(){
+    var mat = new THREE.MeshBasicMaterial( { color: 0xFF0000 } );
+    var geom = new THREE.BoxGeometry(auto,auto,auto);
+    var mesh = new THREE.Mesh(geom, mat); 
+    viewer.impl.scene.add(mesh);
+    viewer.impl.sceneUpdated(true);
+
+  }
+
+//************************************************************************************************************************************************************************************
+  </script>
+</div>
+</body>
+</html>

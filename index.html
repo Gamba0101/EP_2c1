@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Параметрическая рука</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body class="body">
+        <header class="rect_main">
+            <img class="img1" src="images/logo.png">
+            <p style="text-align: center;">Параметрическая рука</p>
+        </header>
+        <main>
+            <p class="text1">Инструкция по использованию:</p>
+            <p class="text2">Вбейте в поля ниже требуемые параметры. Вы можете выбрать более подробную настройку, если требуется, или оставить их без изменений, тогда программа сгенерирует дизайн самостоятельно, исходя из полученных данных.<br><br>Если вы укажите длины пальцев, то параметр "длина указательного пальца" будет проигнорирован, уступив дополнительным параметрам.<br><br>Если выбрать 3 пальца, то безымянный палец и мизинец игнорируются.</bt></p>
+            
+            <center><img src="images/hand.png" width="400px" style="text-align: center;"></center>
+
+            <div style="text-align: center">
+                <input type="text" name="input1" placeholder="Длина указательного пальца, см" class="inputf1">
+                <input type="text" name="input2" placeholder="Ширина руки, см" class="inputf1">
+
+                <select class="inputf1">
+                    <option disabled>Количество пальцев</option>
+                    <option value="3" selected>3</option>
+                    <option value="5">5</option>
+                   </select>
+
+                <details style="margin: 10px auto;">
+                    <summary class="text3">Дополнительные параметры</summary>
+                    <p class="text3">Ширина фаланги большого пальца, см</p>
+                    <input type="text" name="input3" placeholder="1" class="inputf1">
+                    <input type="text" name="input4" placeholder="2" class="inputf1">
+                    <p class="text3">Ширина фаланги указательного пальца, см</p>
+                    <input type="text" name="input5" placeholder="1" class="inputf1">
+                    <input type="text" name="input6" placeholder="2" class="inputf1">
+                    <input type="text" name="input7" placeholder="3" class="inputf1">
+                    <p class="text3">Ширина фаланги среднего пальца, см</p>
+                    <input type="text" name="input8" placeholder="1" class="inputf1">
+                    <input type="text" name="input9" placeholder="2" class="inputf1">
+                    <input type="text" name="input10" placeholder="3" class="inputf1">
+                    <p class="text3">Ширина фаланги безымянного пальца, см</p>
+                    <input type="text" name="input11" placeholder="1" class="inputf1">
+                    <input type="text" name="input12" placeholder="2" class="inputf1">
+                    <input type="text" name="input13" placeholder="3" class="inputf1">
+                    <p class="text3">Ширина фаланги мизинца, см</p>
+                    <input type="text" name="input14" placeholder="1" class="inputf1">
+                    <input type="text" name="input15" placeholder="2" class="inputf1">
+                    <input type="text" name="input16" placeholder="3" class="inputf1">
+                </details>
+                <form action="subscr.html" target="_blank">
+                    <button class="button1">Сгенерировать</button>
+                </form>
+                    <a href="cam.html"><button class="button1">Camera</button></a>
+                <!--
+                    onclick:
+                    <form action="option1.php">
+                -->
+                <iframe src="FORGE.html" width="98%" height="800"></iframe>
+            </div>
+        </main>
+        <footer>
+            <hr>
+            Доп. инфа
+        </footer>
+    </body>
+</html>
